@@ -4,6 +4,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import AuthRouter from './routes/AuthRouter.js'
 import UserRouter from './routes/UserRouter.js'
+import EmailRoutes from "./routes/EmailRoute.js";
 const app = express()
 dotenv.config()
 app.use(express.json())
@@ -23,6 +24,7 @@ app.use(
 
 app.use('/auth', AuthRouter)
 app.use('/user', UserRouter)
+app.use("/sendEmail", EmailRoutes);
 
 mongoose.connect(process.env.MONGODB_URI)
 .then(()=>{

@@ -10,6 +10,7 @@ const registerJoiSchema = Joi.object({
     minDomainSegments: 2,
     tlds: { allow: ["com", "net"] },
   }),
+  cnic: Joi.string().min(13).max(15),
 });
 
 const loginJoiSchema = Joi.object({
@@ -75,6 +76,7 @@ export const signUp = async (req, res) => {
       fullName: value.fullName,
       email: email,
       password: hashedPassword,
+      cnic: value.cnic,
     };
     let newUesr = await new UserModal(obj);
     newUesr = await newUesr.save();
